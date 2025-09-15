@@ -1,12 +1,11 @@
 package com.kyant.taglib
 
+import kotlin.jvm.JvmStatic
+
 /**
  * An object that provides access to the native TagLib library.
  */
-public object TagLib {
-    @JvmStatic
-    private external fun getAudioProperties(fd: Int, readStyle: Int): AudioProperties?
-
+public expect object TagLib {
     /**
      * Get audio properties from file descriptor.
      *
@@ -17,7 +16,7 @@ public object TagLib {
     public fun getAudioProperties(
         fd: Int,
         readStyle: AudioPropertiesReadStyle = AudioPropertiesReadStyle.Average,
-    ): AudioProperties? = getAudioProperties(fd, readStyle.ordinal)
+    ): AudioProperties?
 
     /**
      * Get metadata from file descriptor.
@@ -26,7 +25,7 @@ public object TagLib {
      * @param readPictures Whether to read pictures
      */
     @JvmStatic
-    public external fun getMetadata(fd: Int, readPictures: Boolean = true): Metadata?
+    public fun getMetadata(fd: Int, readPictures: Boolean = true): Metadata?
 
     /**
      * Get metadata property values from file descriptor.
@@ -35,23 +34,19 @@ public object TagLib {
      * @param propertyName Property name
      */
     @JvmStatic
-    public external fun getMetadataPropertyValues(fd: Int, propertyName: String): Array<String>?
+    public fun getMetadataPropertyValues(fd: Int, propertyName: String): Array<String>?
 
     /**
      * Get pictures from file descriptor. There may be multiple pictures with different types.
      */
     @JvmStatic
-    public external fun getPictures(fd: Int): Array<Picture>
+    public fun getPictures(fd: Int): Array<Picture>
 
     /**
      * Get front cover from file descriptor.
      */
     @JvmStatic
-    public fun getFrontCover(fd: Int): Picture? {
-        val pictures = getPictures(fd)
-        return pictures.find { picture -> picture.pictureType == "Front Cover" }
-            ?: pictures.firstOrNull()
-    }
+    public fun getFrontCover(fd: Int): Picture?
 
     /**
      * Save metadata by file descriptor.
@@ -62,7 +57,7 @@ public object TagLib {
      * @return Whether the operation was successful
      */
     @JvmStatic
-    public external fun savePropertyMap(fd: Int, propertyMap: PropertyMap): Boolean
+    public fun savePropertyMap(fd: Int, propertyMap: PropertyMap): Boolean
 
     /**
      * Save pictures by file descriptor.
@@ -73,9 +68,5 @@ public object TagLib {
      * @return Whether the operation was successful
      */
     @JvmStatic
-    public external fun savePictures(fd: Int, pictures: Array<Picture>): Boolean
-
-    init {
-        System.loadLibrary("taglib")
-    }
+    public fun savePictures(fd: Int, pictures: Array<Picture>): Boolean
 }
