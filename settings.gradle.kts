@@ -1,3 +1,5 @@
+rootProject.name = "KotlinTagLib"
+
 pluginManagement {
     repositories {
         google()
@@ -5,6 +7,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
     repositories {
@@ -12,5 +16,3 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "taglib"
