@@ -6,6 +6,20 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+kotlin {
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_2_0
+        languageVersion = KotlinVersion.KOTLIN_2_0
+        jvmTarget = JvmTarget.JVM_1_8
+    }
+    explicitApi()
+}
+
+dependencies {
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+}
+
 android {
     namespace = "com.kyant.taglib"
     compileSdk = 36
@@ -28,33 +42,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     externalNativeBuild {
         cmake {
             path("src/main/cpp/CMakeLists.txt")
-            version = "4.0.2"
+            version = "4.0.4"
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlin {
-        compilerOptions {
-            apiVersion = KotlinVersion.KOTLIN_2_3
-            languageVersion = KotlinVersion.KOTLIN_2_3
-            jvmTarget = JvmTarget.JVM_21
-        }
-    }
-    lint {
-        checkReleaseBuilds = false
-    }
-}
-
-kotlin {
-    explicitApi()
-}
-
-dependencies {
-    androidTestImplementation(libs.androidx.runner)
-    androidTestImplementation(libs.androidx.rules)
 }
