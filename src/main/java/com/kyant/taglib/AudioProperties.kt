@@ -8,9 +8,9 @@ package com.kyant.taglib
  * @property sampleRate Sample rate in Hz
  * @property channels Number of channels
  */
-public data class AudioProperties(
-    val length: Int,
-    val bitrate: Int,
-    val sampleRate: Int,
-    val channels: Int,
+public class AudioProperties(
+    public val length: Int,
+    public val bitrate: Int,
+    public val sampleRate: Int,
+    public val channels: Int,
 )

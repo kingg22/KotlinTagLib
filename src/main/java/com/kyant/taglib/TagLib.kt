@@ -5,10 +5,7 @@ package com.kyant.taglib
  */
 public object TagLib {
     @JvmStatic
-    private external fun getAudioProperties(
-        fd: Int,
-        readStyle: Int,
-    ): AudioProperties?
+    private external fun getAudioProperties(fd: Int, readStyle: Int): AudioProperties?
 
     /**
      * Get audio properties from file descriptor.
@@ -29,10 +26,7 @@ public object TagLib {
      * @param readPictures Whether to read pictures
      */
     @JvmStatic
-    public external fun getMetadata(
-        fd: Int,
-        readPictures: Boolean = true,
-    ): Metadata?
+    public external fun getMetadata(fd: Int, readPictures: Boolean = true): Metadata?
 
     /**
      * Get metadata property values from file descriptor.
@@ -41,10 +35,7 @@ public object TagLib {
      * @param propertyName Property name
      */
     @JvmStatic
-    public external fun getMetadataPropertyValues(
-        fd: Int,
-        propertyName: String,
-    ): Array<String>?
+    public external fun getMetadataPropertyValues(fd: Int, propertyName: String): Array<String>?
 
     /**
      * Get pictures from file descriptor. There may be multiple pictures with different types.
@@ -71,10 +62,7 @@ public object TagLib {
      * @return Whether the operation was successful
      */
     @JvmStatic
-    public external fun savePropertyMap(
-        fd: Int,
-        propertyMap: PropertyMap,
-    ): Boolean
+    public external fun savePropertyMap(fd: Int, propertyMap: PropertyMap): Boolean
 
     /**
      * Save pictures by file descriptor.
@@ -85,10 +73,7 @@ public object TagLib {
      * @return Whether the operation was successful
      */
     @JvmStatic
-    public external fun savePictures(
-        fd: Int,
-        pictures: Array<Picture>,
-    ): Boolean
+    public external fun savePictures(fd: Int, pictures: Array<Picture>): Boolean
 
     init {
         System.loadLibrary("taglib")

@@ -8,18 +8,14 @@ package com.kyant.taglib
  * @param pictureType String with type as specified for ID3v2, e.g. "Front Cover", "Back Cover", "Band"
  * @param mimeType String with image format, e.g. "image/jpeg"
  */
-public data class Picture(
-    val data: ByteArray,
-    val description: String,
-    val pictureType: String,
-    val mimeType: String,
+public class Picture(
+    public val data: ByteArray,
+    public val description: String,
+    public val pictureType: String,
+    public val mimeType: String,
 ) {
-    override fun toString(): String {
-        return "Picture(data=[${data.size} bytes], " +
-            "description=$description, " +
-            "pictureType=$pictureType, " +
-            "mimeType=$mimeType)"
-    }
+    override fun toString(): String =
+        "Picture(data=[${data.size} bytes], description=$description, pictureType=$pictureType, mimeType=$mimeType)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
